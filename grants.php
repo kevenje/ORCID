@@ -13,22 +13,7 @@ $context = stream_context_create(array(
     )
   )
 );
-//set_time_limit(20); //extends time for 20 seconds
-include_once '../includes/apps.inc'; //Get connection information
-//Connect
-$db = new mysqli($apps_server, $apps_username, $apps_password, $apps_database);
-if($db->connect_errno > 0){
-    die('Unable to connect to database [' . $db->connect_error . ']');
-}
-$result = $db->query("SELECT fac_orcid,fac_uri FROM lib_fac WHERE fac_active='Yes' AND fac_orcid !='';");
-$resultnum = $result->num_rows;
-$db->close(); // Close DB
-$i=0;
-while($row = $result->fetch_assoc()){
-set_time_limit(5);
-$i++;
-$orcid = $row['fac_orcid'];
-$uri = $row['fac_uri'];
+
 $outputrow='';
 // Output Starts
 $url = 'https://pub.orcid.org/v2.1/'.$orcid;
@@ -64,6 +49,6 @@ if(!empty($grants)) {
 	$fp = fopen($cachefile,'w');
 	fwrite($fp,ob_get_contents());
 	fclose($fp);
-	}
 }
+
 ?>
