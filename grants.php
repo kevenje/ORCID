@@ -44,7 +44,7 @@ if(!empty($grants)) {
 
 	$cachefile= $location.'/'.$uri.'.html'; // generate the static html file
 	ob_start(); 
-	//echo '<!-- Do not edit. This file is auto generated each day at 12:01am from /home/library2/scripts -->'."\r\n\r\n";
+	//echo '<!-- Do not edit. This file is auto generated each day -->'."\r\n\r\n";
 	echo $outputrow;
 	$fp = fopen($cachefile,'w');
 	fwrite($fp,ob_get_contents());
